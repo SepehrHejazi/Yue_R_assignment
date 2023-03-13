@@ -79,10 +79,10 @@ teosinte_merged <- mutate(snp_id, teosinte_t)
 
 # replace missing dat by ? or -
 ```{r}
-maize_merged_with_q <- as.tibble(lapply(maize_merged, gsub, pattern = "\\?\\/\\?", replacement = "\\?"))
-maize_merged_with_d <- as.tibble(lapply(maize_merged, gsub, pattern = "\\?\\/\\?", replacement = "\\-"))
-teosinte_merged_with_q <- as.tibble(lapply(teosinte_merged, gsub, pattern = "\\?\\/\\?", replacement = "\\?"))
-teosinte_merged_with_d <- as.tibble(lapply(teosinte_merged, gsub, pattern = "\\?\\/\\?", replacement = "\\-"))
+maize_merged_with_q <- as_tibble(lapply(maize_merged, gsub, pattern = "\\?\\/\\?", replacement = "\\?"))
+maize_merged_with_d <- as_tibble(lapply(maize_merged, gsub, pattern = "\\?\\/\\?", replacement = "\\-"))
+teosinte_merged_with_q <- as_tibble(lapply(teosinte_merged, gsub, pattern = "\\?\\/\\?", replacement = "\\?"))
+teosinte_merged_with_d <- as_tibble(lapply(teosinte_merged, gsub, pattern = "\\?\\/\\?", replacement = "\\-"))
 ```
 
 # creat directories and make it tidy
