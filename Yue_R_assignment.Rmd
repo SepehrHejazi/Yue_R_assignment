@@ -184,11 +184,17 @@ teosinte_descending_chr10 <- filter(teosinte_merged_with_d, Chromosome ==10) %>%
 # data visualization
 
 
+# set up
 ```{r}
+install.packages("ggplot")
 library("ggplot")
 ```
 
 
+# 
+```{r}
+ggplot(data = "maize_merge" ) + geom_point(mapping = aes(x=Position, y = ))
+```
 
 
 
