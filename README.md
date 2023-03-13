@@ -1,1 +1,18 @@
-# Yue_R_assignment
+# set enviroment
+```install.packages("filesstrings")library("tidyr")library("tidyverse")library("dplyr")library("filesstrings")
+```
+
+# data processing## input data and do data inspections
+```snp_data <- read_tsv("./data/fang_et_al_genotypes.txt", col_names = TRUE)snp_position <- read_tsv("./data/snp_position.txt", col_names = TRUE)```
+
+## data inspection```typeof(snp_data)str(snp_data)```
+
+## data inspection```typeof(snp_position)str(snp_position)```## select maize and teosinte SNP data based on groups## assign slected rows into new variables## remove the fisrt 3 columns selected rows ```{r}maize <- filter(snp_data, Group %in% c('ZMMIL', 'ZMMLR', 'ZMMMR'))maize <- select(maize, -(Sample_ID:Group))as.list(maize)teosinte <- filter(snp_data, Group %in% c('ZMPBA', 'ZMPIL', 'ZMPJA'))teosinte <- select(teosinte, -(Sample_ID:Group))as.list(maize) ```
+
+
+## transpose maize and teosinte SNP data, assign new variables, and change data structure```{r}maize_t <- t(maize) maize_t <- as.data.frame(maize_t)teosinte_t <- t(teosinte)teosinte_t <- as.data.frame(teosinte_t)```## extract SNP IDs from "snp_position.txt" and assign new variables```{r}snp_id <- select(snp_position, SNP_ID, Chromosome, Position)snp_id <- as.data.frame(snp_id)```## merge SNP data with SNP ID```{r}maize_merged <- mutate(snp_id, maize_t)teosinte_merged <- mutate(snp_id, teosinte_t)```
+
+# replace missing dat by ? or -```{r}maize_merged_with_q <- as.tibble(lapply(maize_merged, gsub, pattern = "\\?\\/\\?", replacement = "\\?"))maize_merged_with_d <- as.tibble(lapply(maize_merged, gsub, pattern = "\\?\\/\\?", replacement = "\\-"))teosinte_merged_with_q <- as.tibble(lapply(teosinte_merged, gsub, pattern = "\\?\\/\\?", replacement = "\\?"))teosinte_merged_with_d <- as.tibble(lapply(teosinte_merged, gsub, pattern = "\\?\\/\\?", replacement = "\\-"))```# creat directories ```{r}dir.create('./maize')dir.create('./teosinte')
+```
+
+## produce maize files grouped by chromosome with ascending position, missiing data is replaced by ?, save in ./maize```{r}f <- maize_merged_with_q for (i in 1:10){subdata=f[f$Chromosome==i,];subdata=subdata[order(subdata$Position),];of=paste('./maize/maize_ascending_chr', i,sep='_');colnames(subdata)=colnames(f);write.table(subdata,file=of,quote=F,sep='\t',row.names=F)}```## produce maize files grouped by chromosome with descending position, missiing data is replaced by -, and save in ./maize```{r}f <- maize_merged_with_d for (i in 1:10){subdata=f[f$Chromosome==i,];subdata=subdata[order(subdata$Position),decrease=T];of=paste('./maize/maize_descending_chr', i,sep='_');colnames(subdata)=colnames(f);write.table(subdata,file=of,quote=F,sep='\t',row.names=F)}```## produce teosinte data grouped by chromose with ascending position, missing dat replaced by ?, save in ./teosinte```{r}f <- teosinte_merged_with_q for (i in 1:10){subdata=f[f$Chromosome==i,];subdata=subdata[order(subdata$Position),];of=paste('./teosinte/teosinte_ascending_chr', i,sep='_');colnames(subdata)=colnames(f);write.table(subdata,file=of,quote=F,sep='\t',row.names=F)}```## produce teosinte data grouped by chromose with ascending position, missing dat replaced by ?, save in ./teosinte```{r}f <- teosinte_merged_with_q for (i in 1:10){subdata=f[f$Chromosome==i,];subdata=subdata[order(subdata$Position),];of=paste('./teosinte/teosinte_ascending_chr', i,sep='_');colnames(subdata)=colnames(f);write.table(subdata,file=of,quote=F,sep='\t',row.names=F)}```# data visualization## set up```{r}library("ggplot")```
