@@ -1,0 +1,30 @@
+---
+title: "revierw_by_sep_yue"
+output: html_document
+date: "2023-03-20"
+---
+
+## Review of the code
+line30: I would like to see a better format about the number of lines, columns and size of the file. Reading data from typeof and str is very hard. 
+line48: what was the point of listing ? it took like 10 minutes to print the file on my computer and I stopped that process since it was pointless. 
+line51: same heavy process without a reason
+I really like the flow of your code and how tidy and clean it is.
+line103: you could use a for loop to make 10 files with 1-10 names in it however this code here is very clean. 
+line 189: install.packages("ggplot"), please avoid installing packages in the code. 
+line 196: i am getting this error: "Error in `fortify()`:
+! `data` must be a <data.frame>, or an object coercible by `fortify()`, not a character vector.
+Backtrace:
+ 1. ggplot2::ggplot(data = "maize_merge")
+ 2. ggplot2:::ggplot.default(data = "maize_merge")
+ 4. ggplot2:::fortify.default(data, ...)
+Error in fortify(data, ...) :"
+
+## conclusion
+Although I found data processing perfect, I  think data inspection is not done in the way it should.
+
+
+
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
