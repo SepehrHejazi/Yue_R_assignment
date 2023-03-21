@@ -1,0 +1,18 @@
+---
+title: "Review2"
+output: html_document
+date: "2023-03-21"
+---
+
+
+## R Markdown
+
+suggestion: in your data processign you made so many file in the memory which makes your process hard to run and also hard to understand. Also, There is a lack of comments in the discription of the files. line 106-130
+suggestion : could use a for loop for creating 1-10 files
+data visualization : 
+what is area of chromosome? (I guess it is its location?)
+Also too many simillar figures. can't tell the difference between the snp density/ area of chromosome figures. all look the same for me.
+can't find the hetroginety rates. last data visualization request in the assignemnt. 
+conclusion: 
+it has a good data processing part but reading the data visualization is kind of hard and last question is unanswered. 
+
